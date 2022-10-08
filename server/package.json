@@ -2,10 +2,10 @@
   "name": "pusher-in-worker",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js",
+    "start": "nodemon -x 'node server.js || touch server.js'",
     "db": "prisma db push",
     "postinstall": "pnpm exec -w apps/api prisma generate"
   },
