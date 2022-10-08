@@ -1,8 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { CheckIcon, TrashIcon } from "@heroicons/react/24/solid";
+import { useMutation } from "@tanstack/react-query";
+import { processTodo } from "../todo-service";
 
-export const TodoItem = ({ todo, toggleTodo, removeTodo }) => {
+export const TodoItem = ({ todo, toggleTodo }) => {
+  // mutation to delete a todo.
+  const { mutate: deleteTodo } = useMutation((data) =>
+    processTodo("REMOVE", data)
+  );
+
+  // Remove a todo from existing list of todos.
+  const handleDeleteTodo = (id) => {
+    deleteTodo({ id });
+  };
+
   return (
     <div className="flex justify-between items-center mt-2">
       <div className="flex items-center">
@@ -21,7 +33,7 @@ export const TodoItem = ({ todo, toggleTodo, removeTodo }) => {
         <span className="p-2">{todo.task}</span>
       </div>
       <button
-        onClick={() => removeTodo(todo.id)}
+        onClick={() => handleDeleteTodo(todo.id)}
         className="focus:outline-none"
       >
         <TrashIcon className="w-6 h-6 text-red-600" />
@@ -34,5 +46,4 @@ export const TodoItem = ({ todo, toggleTodo, removeTodo }) => {
 TodoItem.propTypes = {
   todo: PropTypes.object.isRequired,
   toggleTodo: PropTypes.func.isRequired,
-  removeTodo: PropTypes.func.isRequired,
 };

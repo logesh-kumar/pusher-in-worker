@@ -5,6 +5,9 @@ import { PusherProvider } from "@harelpls/use-pusher";
 import { config } from "./pusher";
 import App from "./App";
 import "./index.css";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+
+// react query devtools
 
 const queryClient = new QueryClient();
 
@@ -14,6 +17,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <PusherProvider {...config}>
         <App />
       </PusherProvider>
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   </React.StrictMode>
 );
