@@ -1,5 +1,5 @@
 # pusher-in-worker - WIP
-## A realtime todo app that demonstrates  pusher in service worker
+## A Realtime todo app built with react, nodejs, pusher, prisma and sqlite
 ##Techstack 
 - Frontend : React
 - Backend : Nodejs
