@@ -1,10 +1,19 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App'
-import './index.css'
+import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { PusherProvider } from "@harelpls/use-pusher";
+import { config } from "./pusher";
+import App from "./App";
+import "./index.css";
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+const queryClient = new QueryClient();
+
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <App />
+    <QueryClientProvider client={queryClient}>
+      <PusherProvider {...config}>
+        <App />
+      </PusherProvider>
+    </QueryClientProvider>
   </React.StrictMode>
-)
+);
