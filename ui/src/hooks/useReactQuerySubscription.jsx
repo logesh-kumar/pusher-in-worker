@@ -1,6 +1,5 @@
-import { useChannel } from "@harelpls/use-pusher";
-import { useEvent } from "@harelpls/use-pusher";
 import { useQueryClient } from "@tanstack/react-query";
+import { worker } from "../main";
 
 /**
  * React hook to subscribe to a pusher channel and event and update the react-query cache.
@@ -9,26 +8,42 @@ import { useQueryClient } from "@tanstack/react-query";
  * @param {string} queryKey
  * @param {(data: any, oldData: any) => any} handleQueryCacheUpdate
  * @returns {void}
- * @example
- * useReactQuerySubscription(
- * "todos",
- * "insert",
- * ["todos"],
- * (data, oldData) => [...oldData, data]
- * );
  */
 export const useReactQuerySubscription = (
   channelName,
-  eventName,
-  queryKey,
-  handleQueryCacheUpdate
+  eventNames,
+  queryKey
 ) => {
-  const channel = useChannel(channelName);
+  // Subscribe to the pusher channel and event which is inside a web worker
+  worker.postMessage({
+    type: "subscribe",
+    channelName,
+    eventNames,
+  });
+
   const queryClient = useQueryClient();
 
-  useEvent(channel, eventName, (data) => {
-    queryClient.setQueryData(queryKey, (oldData) =>
-      handleQueryCacheUpdate(data, oldData)
-    );
-  });
+  // Update the react-query cache when the web worker receives a message
+  worker.onmessage = (event) => {
+    const { eventName: action, data } = event.data;
+
+    if (action === "updated") {
+      // Update the cache with the new data
+      queryClient.setQueryData(queryKey, (oldData) => {
+        return oldData.map((t) => (t.id === data.id ? data : t));
+      });
+    } else if (action === "inserted") {
+      // Update the cache with the new data
+      queryClient.setQueryData(queryKey, (oldData) => {
+        if (!oldData.find((t) => t.id === data.id)) {
+          return [...oldData, data];
+        }
+      });
+    } else if (action === "deleted") {
+      // Update the cache with the new data
+      queryClient.setQueryData(queryKey, (oldData) => {
+        return oldData.filter((t) => t.id !== data.id);
+      });
+    }
+  };
 };

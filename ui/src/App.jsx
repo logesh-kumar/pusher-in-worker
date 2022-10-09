@@ -5,33 +5,11 @@ function App() {
   const QUERRY_KEY = ["todos"];
   const CHANNEL_NAME = "todos";
 
+  // Subscribe to the pusher channel and event which is inside a web worker
   useReactQuerySubscription(
     CHANNEL_NAME,
-    "inserted",
-    QUERRY_KEY,
-    (newData, oldData) => {
-      if (!oldData.find((t) => t.id === newData.id)) {
-        return [...oldData, newData];
-      }
-    }
-  );
-
-  useReactQuerySubscription(
-    CHANNEL_NAME,
-    "deleted",
-    QUERRY_KEY,
-    (newData, oldData) => {
-      return oldData.filter((t) => t.id !== newData.id);
-    }
-  );
-
-  useReactQuerySubscription(
-    CHANNEL_NAME,
-    "updated",
-    QUERRY_KEY,
-    (newData, oldData) => {
-      return oldData.map((t) => (t.id === newData.id ? newData : t));
-    }
+    ["inserted", "updated", "deleted"],
+    QUERRY_KEY
   );
 
   return (
