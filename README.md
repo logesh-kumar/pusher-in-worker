@@ -3,6 +3,7 @@
 
 ## To run the app, you need to run server and client seperately
 - Install pnpm to handle dependencies https://pnpm.io/installation
+- Create and configure .env files in both server and ui folder. You can make use of the .env.example files. 
 
 ### To run teh nodejs server, Run the following commands
  ```sh
