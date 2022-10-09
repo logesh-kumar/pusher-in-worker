@@ -22,6 +22,13 @@ const pusher = new Pusher({
 
 app.set("PORT", process.env.PORT || 5000);
 
+app.post("/pusher/auth", (req, res) => {
+  const socketId = req.body.socket_id;
+  const channel = req.body.channel_name;
+  const authResponse = pusher.authorizeChannel(socketId, channel);
+  res.send(authResponse);
+});
+
 // get all todos
 app.get("/todos", async (req, res) => {
   const todos = await prisma.todo.findMany();
