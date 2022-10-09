@@ -1,7 +1,6 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@harelpls/use-pusher': ^7.2.1
   '@heroicons/react': ^2.0.12
   '@tanstack/react-query': ^4.10.3
   '@tanstack/react-query-devtools': ^4.10.4
@@ -18,7 +17,6 @@ specifiers:
   vite: ^3.1.6
 
 dependencies:
-  '@harelpls/use-pusher': 7.2.1_react@18.2.0
   '@heroicons/react': 2.0.12_react@18.2.0
   '@tanstack/react-query': 4.10.3_biqbaboplfbrettd7655fr4n2y
   '@tanstack/react-query-devtools': 4.10.4_vhepussragssjkevgznguhxexq
@@ -322,18 +320,6 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
-
-  /@harelpls/use-pusher/7.2.1_react@18.2.0:
-    resolution: {integrity: sha512-e94JTkNsaVKDnB6j6j4P3RRAGSNtMN6V+f3Or+gwe3TsdLUlpeGrw7JchIsSLmsxYvnJwS4YRees4fbuHLeQFQ==}
-    engines: {node: '>=8', npm: '>=5'}
-    peerDependencies:
-      react: ^16.9.0
-    dependencies:
-      dequal: 2.0.3
-      invariant: 2.2.4
-      pusher-js: 7.4.0
-      react: 18.2.0
-    dev: false
 
   /@heroicons/react/2.0.12_react@18.2.0:
     resolution: {integrity: sha512-FZxKh3i9aKIDxyALTgIpSF2t6V6/eZfF5mRu41QlwkX3Oxzecdm1u6dpft6PQGxIBwO7TKYWaMAYYL8mp/EaOg==}
@@ -653,11 +639,6 @@ packages:
     resolution: {integrity: sha512-Y2caI5+ZwS5c3RiNDJ6u53VhQHv+hHKwhkI1iHvceKUHw9Df6EK2zRLfjejRgMuCuxK7PfSWIMwWecceVvThjQ==}
     dev: true
 
-  /dequal/2.0.3:
-    resolution: {integrity: sha512-0je+qPKHEMohvfRTCEo3CrPG6cAzAYgmzKyxRiYSSDkS6eGJdyVJm7WaYA5ECaAD9wLB2T4EEeymA5aFVcYXCA==}
-    engines: {node: '>=6'}
-    dev: false
-
   /detective/5.2.1:
     resolution: {integrity: sha512-v9XE1zRnz1wRtgurGu0Bs8uHKFSTdteYZNbIPFVhUZ39L/S79ppMpdmVOZAnoz1jfEFodc48n6MX483Xo3t1yw==}
     engines: {node: '>=0.8.0'}
@@ -975,12 +956,6 @@ packages:
     dependencies:
       function-bind: 1.1.1
     dev: true
-
-  /invariant/2.2.4:
-    resolution: {integrity: sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns//LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60JEjYldbPif/A2B1C2gNA==}
-    dependencies:
-      loose-envify: 1.4.0
-    dev: false
 
   /is-binary-path/2.1.0:
     resolution: {integrity: sha512-ZMERYes6pDydyuGidse7OsHxtbI7WVeUEozgR/g7rd0xUimYNlvZRE/K2MgZTjWy725IfelLeVcEM97mmtRGXw==}

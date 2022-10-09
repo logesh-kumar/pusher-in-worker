@@ -9,7 +9,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@harelpls/use-pusher": "^7.2.1",
     "@heroicons/react": "^2.0.12",
     "@tanstack/react-query": "^4.10.3",
     "@tanstack/react-query-devtools": "^4.10.4",
