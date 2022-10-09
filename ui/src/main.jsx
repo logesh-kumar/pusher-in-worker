@@ -1,4 +1,4 @@
-import MyWorker from "./worker?worker";
+import PusherWebWorker from "./worker?worker";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import React from "react";
 import ReactDOM from "react-dom/client";
@@ -7,7 +7,7 @@ import "./index.css";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 // Register  a web worker to handle the pusher events
-export const worker = new MyWorker();
+export const pusherWebWoker = new PusherWebWorker();
 
 const queryClient = new QueryClient();
 

@@ -1,5 +1,5 @@
 import { useQueryClient } from "@tanstack/react-query";
-import { worker } from "../main";
+import { pusherWebWoker } from "../main";
 
 /**
  * React hook to subscribe to a pusher channel and event and update the react-query cache.
@@ -15,7 +15,7 @@ export const useReactQuerySubscription = (
   queryKey
 ) => {
   // Subscribe to the pusher channel and event which is inside a web worker
-  worker.postMessage({
+  pusherWebWoker.postMessage({
     type: "subscribe",
     channelName,
     eventNames,
@@ -24,7 +24,7 @@ export const useReactQuerySubscription = (
   const queryClient = useQueryClient();
 
   // Update the react-query cache when the web worker receives a message
-  worker.onmessage = (event) => {
+  pusherWebWoker.onmessage = (event) => {
     const { eventName: action, data } = event.data;
 
     if (action === "updated") {
