@@ -5,7 +5,7 @@
 - Install pnpm to handle dependencies https://pnpm.io/installation
 - Create and configure .env files in both server and ui folder. You can make use of the .env.example files. 
 
-### To run teh nodejs server, Run the following commands
+### To run the nodejs server, Run the following commands
  ```sh
   pnpm i #Installs all dependencies 
   pnpm db #Run db migrations
